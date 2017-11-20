@@ -113,21 +113,17 @@ class Person_PhoneNumber : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated string number = 1;
-  inline int number_size() const;
+  // required string number = 1;
+  inline bool has_number() const;
   inline void clear_number();
   static const int kNumberFieldNumber = 1;
-  inline const ::std::string& number(int index) const;
-  inline ::std::string* mutable_number(int index);
-  inline void set_number(int index, const ::std::string& value);
-  inline void set_number(int index, const char* value);
-  inline void set_number(int index, const char* value, size_t size);
-  inline ::std::string* add_number();
-  inline void add_number(const ::std::string& value);
-  inline void add_number(const char* value);
-  inline void add_number(const char* value, size_t size);
-  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& number() const;
-  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_number();
+  inline const ::std::string& number() const;
+  inline void set_number(const ::std::string& value);
+  inline void set_number(const char* value);
+  inline void set_number(const char* value, size_t size);
+  inline ::std::string* mutable_number();
+  inline ::std::string* release_number();
+  inline void set_allocated_number(::std::string* number);
 
   // optional .tutorial.Person.PhoneType type = 2;
   inline bool has_type() const;
@@ -138,6 +134,8 @@ class Person_PhoneNumber : public ::google::protobuf::Message {
 
   // @@protoc_insertion_point(class_scope:tutorial.Person.PhoneNumber)
  private:
+  inline void set_has_number();
+  inline void clear_has_number();
   inline void set_has_type();
   inline void clear_has_type();
 
@@ -145,7 +143,7 @@ class Person_PhoneNumber : public ::google::protobuf::Message {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::std::string> number_;
+  ::std::string* number_;
   int type_;
   friend void  protobuf_AddDesc_Person_2eproto();
   friend void protobuf_AssignDesc_Person_2eproto();
@@ -248,17 +246,12 @@ class Person : public ::google::protobuf::Message {
   inline ::std::string* release_name();
   inline void set_allocated_name(::std::string* name);
 
-  // repeated int32 id = 2;
-  inline int id_size() const;
+  // required int32 id = 2;
+  inline bool has_id() const;
   inline void clear_id();
   static const int kIdFieldNumber = 2;
-  inline ::google::protobuf::int32 id(int index) const;
-  inline void set_id(int index, ::google::protobuf::int32 value);
-  inline void add_id(::google::protobuf::int32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-      id() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-      mutable_id();
+  inline ::google::protobuf::int32 id() const;
+  inline void set_id(::google::protobuf::int32 value);
 
   // optional string email = 3;
   inline bool has_email() const;
@@ -288,6 +281,8 @@ class Person : public ::google::protobuf::Message {
  private:
   inline void set_has_name();
   inline void clear_has_name();
+  inline void set_has_id();
+  inline void clear_has_id();
   inline void set_has_email();
   inline void clear_has_email();
 
@@ -296,9 +291,9 @@ class Person : public ::google::protobuf::Message {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::std::string* name_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > id_;
   ::std::string* email_;
   ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber > phone_;
+  ::google::protobuf::int32 id_;
   friend void  protobuf_AddDesc_Person_2eproto();
   friend void protobuf_AssignDesc_Person_2eproto();
   friend void protobuf_ShutdownFile_Person_2eproto();
@@ -395,58 +390,80 @@ class AddressBook : public ::google::protobuf::Message {
 
 // Person_PhoneNumber
 
-// repeated string number = 1;
-inline int Person_PhoneNumber::number_size() const {
-  return number_.size();
+// required string number = 1;
+inline bool Person_PhoneNumber::has_number() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Person_PhoneNumber::set_has_number() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Person_PhoneNumber::clear_has_number() {
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void Person_PhoneNumber::clear_number() {
-  number_.Clear();
+  if (number_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    number_->clear();
+  }
+  clear_has_number();
 }
-inline const ::std::string& Person_PhoneNumber::number(int index) const {
+inline const ::std::string& Person_PhoneNumber::number() const {
   // @@protoc_insertion_point(field_get:tutorial.Person.PhoneNumber.number)
-  return number_.Get(index);
+  return *number_;
 }
-inline ::std::string* Person_PhoneNumber::mutable_number(int index) {
-  // @@protoc_insertion_point(field_mutable:tutorial.Person.PhoneNumber.number)
-  return number_.Mutable(index);
-}
-inline void Person_PhoneNumber::set_number(int index, const ::std::string& value) {
+inline void Person_PhoneNumber::set_number(const ::std::string& value) {
+  set_has_number();
+  if (number_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    number_ = new ::std::string;
+  }
+  number_->assign(value);
   // @@protoc_insertion_point(field_set:tutorial.Person.PhoneNumber.number)
-  number_.Mutable(index)->assign(value);
 }
-inline void Person_PhoneNumber::set_number(int index, const char* value) {
-  number_.Mutable(index)->assign(value);
+inline void Person_PhoneNumber::set_number(const char* value) {
+  set_has_number();
+  if (number_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    number_ = new ::std::string;
+  }
+  number_->assign(value);
   // @@protoc_insertion_point(field_set_char:tutorial.Person.PhoneNumber.number)
 }
-inline void Person_PhoneNumber::set_number(int index, const char* value, size_t size) {
-  number_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
+inline void Person_PhoneNumber::set_number(const char* value, size_t size) {
+  set_has_number();
+  if (number_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    number_ = new ::std::string;
+  }
+  number_->assign(reinterpret_cast<const char*>(value), size);
   // @@protoc_insertion_point(field_set_pointer:tutorial.Person.PhoneNumber.number)
 }
-inline ::std::string* Person_PhoneNumber::add_number() {
-  return number_.Add();
-}
-inline void Person_PhoneNumber::add_number(const ::std::string& value) {
-  number_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:tutorial.Person.PhoneNumber.number)
-}
-inline void Person_PhoneNumber::add_number(const char* value) {
-  number_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:tutorial.Person.PhoneNumber.number)
-}
-inline void Person_PhoneNumber::add_number(const char* value, size_t size) {
-  number_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:tutorial.Person.PhoneNumber.number)
-}
-inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
-Person_PhoneNumber::number() const {
-  // @@protoc_insertion_point(field_list:tutorial.Person.PhoneNumber.number)
+inline ::std::string* Person_PhoneNumber::mutable_number() {
+  set_has_number();
+  if (number_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    number_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:tutorial.Person.PhoneNumber.number)
   return number_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::std::string>*
-Person_PhoneNumber::mutable_number() {
-  // @@protoc_insertion_point(field_mutable_list:tutorial.Person.PhoneNumber.number)
-  return &number_;
+inline ::std::string* Person_PhoneNumber::release_number() {
+  clear_has_number();
+  if (number_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = number_;
+    number_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void Person_PhoneNumber::set_allocated_number(::std::string* number) {
+  if (number_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete number_;
+  }
+  if (number) {
+    set_has_number();
+    number_ = number;
+  } else {
+    clear_has_number();
+    number_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:tutorial.Person.PhoneNumber.number)
 }
 
 // optional .tutorial.Person.PhoneType type = 2;
@@ -554,34 +571,28 @@ inline void Person::set_allocated_name(::std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:tutorial.Person.name)
 }
 
-// repeated int32 id = 2;
-inline int Person::id_size() const {
-  return id_.size();
+// required int32 id = 2;
+inline bool Person::has_id() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Person::set_has_id() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Person::clear_has_id() {
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void Person::clear_id() {
-  id_.Clear();
+  id_ = 0;
+  clear_has_id();
 }
-inline ::google::protobuf::int32 Person::id(int index) const {
+inline ::google::protobuf::int32 Person::id() const {
   // @@protoc_insertion_point(field_get:tutorial.Person.id)
-  return id_.Get(index);
-}
-inline void Person::set_id(int index, ::google::protobuf::int32 value) {
-  id_.Set(index, value);
-  // @@protoc_insertion_point(field_set:tutorial.Person.id)
-}
-inline void Person::add_id(::google::protobuf::int32 value) {
-  id_.Add(value);
-  // @@protoc_insertion_point(field_add:tutorial.Person.id)
-}
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-Person::id() const {
-  // @@protoc_insertion_point(field_list:tutorial.Person.id)
   return id_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-Person::mutable_id() {
-  // @@protoc_insertion_point(field_mutable_list:tutorial.Person.id)
-  return &id_;
+inline void Person::set_id(::google::protobuf::int32 value) {
+  set_has_id();
+  id_ = value;
+  // @@protoc_insertion_point(field_set:tutorial.Person.id)
 }
 
 // optional string email = 3;
