@@ -33,7 +33,26 @@ int main(int argc, char** argv) {
 }
 
 void ListPerson(const tutorial::AddressBook& address_book) {
-    for () {
+    for (int i = 0; i < address_book.person_size(); i++) {
+        const tutorial::Person& person = address_book.person(i);
+        cout << "Person ID:" << person.id();
+        cout << " Name: " << person.name();
+        cout << " Email: " << person.email();
 
+        for (int j = 0; j < person.phone_size(); j++) {
+            const tutorial::Person::PhoneNumber& phone_number = person.phone(j);
+            switch(phone_number.type()) {
+                case tutorial::Person::MOBILE:
+                    cout << " Mobile: ";
+                    break;
+                case tutorial::Person::HOME:
+                    cout << " Home: ";
+                    break;
+                case tutorial::Person::WORK:
+                    cout << " Work: ";
+                    break;
+            }
+            cout << phone_number.number() << endl;
+        }
     }
 }
