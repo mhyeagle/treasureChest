@@ -64,7 +64,7 @@ void PromptForAddress(tutorial::Person* person) {
         getline(cin, number);
         if (number.empty())
             break;
-        tutorial::Person::PhoneNumber* phone_number = person->add_phone();
+        tutorial::Person_PhoneNumber* phone_number = person->add_phone();
         phone_number->set_number(number);
 
         cout << "Is this a mobile, home, or work phone?";
