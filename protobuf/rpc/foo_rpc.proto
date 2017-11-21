@@ -8,7 +8,7 @@ message FooRequest {
 
 message FooRespond {
     required string text = 1;
-    optional int32 times = 2;
+    optional bool result = 2;
 }
 
 service EchoService {
