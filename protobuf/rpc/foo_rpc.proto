@@ -3,12 +3,12 @@ optional cc_generic_service = true;
 
 message FooRequest {
     required string text = 1;
-    optional int32 time = 2;
+    optional int32 times = 2;
 }
 
 message FooRespond {
     required string text = 1;
-    optional int32 time = 2;
+    optional int32 times = 2;
 }
 
 service EchoService {
