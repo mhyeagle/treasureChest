@@ -1,0 +1,1 @@
+ g++ writer.cpp -I /usr/include/jsoncpp -ljsoncpp -std=c++11
