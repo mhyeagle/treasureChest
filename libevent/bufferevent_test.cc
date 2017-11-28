@@ -1,7 +1,11 @@
+#include <iostream>
 #include <event2/event.h>
 #include <event2/bufferevent.h>
 #include <sys/socket.h>
 #include <string>
+#include <string.h>
+
+using namespace std;
 
 void eventcb(struct bufferevent *bev, short events, void *ptr) {
     if (events & BEV_EVENT_CONNECTED) {
@@ -27,7 +31,7 @@ int main() {
 
     bufferevent_setcb(bev, NULL, NULL, eventcb, NULL);
 
-    if (bufferevent_socket_connect(bev, (struct sockaddr_in*)&sin, sizeof(sin)) < 0) {
+    if (bufferevent_socket_connect(bev, (struct sockaddr*)&sin, sizeof(sin)) < 0) {
         //Error starting connection
         bufferevent_free(bev);
         return -1;
